@@ -30,7 +30,7 @@ public class UserDataPages {
     private WebElement phoneInput;
     @FindBy(name = "id_country")
     private WebElement countrySelect;
-    @FindBy(xpath = "//*[@name='id_country']/option[2]")
+    @FindBy(xpath = "bnt")
     private WebElement countryChoose;
     @FindBy(xpath = "/html/body/main/section/div/div/section/section/div/div/form/footer/button")
     private WebElement saveButton;
