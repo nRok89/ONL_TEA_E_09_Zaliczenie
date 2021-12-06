@@ -30,9 +30,10 @@ public class UserDataPages {
     private WebElement phoneInput;
     @FindBy(name = "id_country")
     private WebElement countrySelect;
-    @FindBy(xpath = "bnt")
+    @FindBy(xpath = "//*[@name='id_country']/option[2]")
     private WebElement countryChoose;
-    @FindBy(xpath = "/html/body/main/section/div/div/section/section/div/div/form/footer/button")
+
+    @FindBy(css = "button.btn")
     private WebElement saveButton;
 
     @FindBy(xpath = "//*[@role='alert']/ul/li")
@@ -92,8 +93,9 @@ public class UserDataPages {
     }
 
     public String getNameBottomAddFirst() {
-        String tempOneLineAddAddress = addAddressButtonSpan.getText().replace("\n", "");
-        String oneLineAddAddress = tempOneLineAddAddress.substring(1, tempOneLineAddAddress.length());
+        //String tempOneLineAddAddress = addAddressButtonSpan.getText().replace("\n", "");
+        String tempOneLineAddAddress = addAddressButtonSpan.getText().trim();
+        String oneLineAddAddress = tempOneLineAddAddress.substring(1);
         return oneLineAddAddress;
 
     }
