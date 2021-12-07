@@ -28,9 +28,4 @@ public class ClothesPage {
 
     }
 
-//    public String getSweaterName() {
-//        return sweaterName.getText();
-//
-//    }
-
 }
