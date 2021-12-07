@@ -51,7 +51,7 @@ public class UserDataPages {
     private WebElement addAddressButtonSpan;
 
 
-    public void address(String alias, String address, String code, String city, String phone) {
+    public void address(String alias, String address, String code, String city, String phone, String country) {
         addressButton.click();
         aliasInput.click();
         aliasInput.clear();
@@ -66,7 +66,7 @@ public class UserDataPages {
         cityInput.clear();
         cityInput.sendKeys(city);
         countrySelect.click();
-        countryChoose.click();
+        countryChoose.sendKeys(country);
         phoneInput.click();
         phoneInput.clear();
         phoneInput.sendKeys(phone);
@@ -93,8 +93,7 @@ public class UserDataPages {
     }
 
     public String getNameBottomAddFirst() {
-        //String tempOneLineAddAddress = addAddressButtonSpan.getText().replace("\n", "");
-        String tempOneLineAddAddress = addAddressButtonSpan.getText().trim();
+        String tempOneLineAddAddress = addAddressButtonSpan.getText().replace("\n", "");
         String oneLineAddAddress = tempOneLineAddAddress.substring(1);
         return oneLineAddAddress;
 

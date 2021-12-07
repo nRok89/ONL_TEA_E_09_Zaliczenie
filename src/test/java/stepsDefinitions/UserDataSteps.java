@@ -31,16 +31,16 @@ public class UserDataSteps {
         logIn.myStoreLogin(email, password);
     }
 
-    @Then("^przejscie do zakładki Address i wypisanie danych (.*) (.*) (.*) (.*) (.*)")
-    public void addressData(String alias, String address, String code, String city, String phone) {
+    @Then("^przejscie do zakładki Address i wypisanie danych (.*) (.*) (.*) (.*) (.*) \"(.*)\"$")
+    public void addressData(String alias, String address, String code, String city, String phone, String country) {
         UserDataPages dataAddress = new UserDataPages(driver);
-        dataAddress.address(alias, address, code, city, phone);
+        dataAddress.address(alias, address, code, city, phone, country);
 
 
     }
 
-    @And("^wyświetlenie i potwierdzenie zapisania danych (.*) (.*) (.*) (.*) (.*)$")
-    public void resultsCheck(String alias, String address, String code, String city, String phone) {
+    @And("^wyświetlenie i potwierdzenie zapisania danych (.*) (.*) (.*) (.*) (.*) \"(.*)\"$")
+    public void resultsCheck(String alias, String address, String code, String city, String phone, String country) {
         UserDataPages result = new UserDataPages(driver);
         Assert.assertEquals("Address successfully added!", result.getAlertSuccess());
         Assert.assertEquals(result.getAlias(), alias);
@@ -48,7 +48,7 @@ public class UserDataSteps {
         assertTrue(result.getAddress().matches("(.*)" + code + "(.*)"));
         assertTrue(result.getAddress().matches("(.*)" + city + "(.*)"));
         assertTrue(result.getAddress().matches("(.*)" + phone + "(.*)"));
-        assertTrue(result.getAddress().matches("(.*)United Kingdom(.*)"));
+        assertTrue(result.getAddress().matches("(.*)"+ country +"(.*)"));
 
     }
 
@@ -64,7 +64,7 @@ public class UserDataSteps {
         UserDataPages key = new UserDataPages(driver);
 
         driver.get("https://mystore-testlab.coderslab.pl/index.php?controller=my-account");
-      //  System.out.println(key.getNameBottomAddFirst());
+      System.out.println(key.getNameBottomAddFirst());
         assertTrue(key.getNameBottomAddFirst().matches("ADD FIRST ADDRESS"));
 
     }
