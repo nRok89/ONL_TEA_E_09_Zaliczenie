@@ -75,8 +75,7 @@ public class UserDataPages {
 
     public String getAddress() {
 
-        String oneLineString = addressResult.getText().replace("\n", " ");
-        return oneLineString;
+        return addressResult.getText();
     }
 
     public String getAlertSuccess() {
@@ -93,10 +92,7 @@ public class UserDataPages {
     }
 
     public String getNameBottomAddFirst() {
-        String tempOneLineAddAddress = addAddressButtonSpan.getText().replace("\n", "");
-        String oneLineAddAddress = tempOneLineAddAddress.substring(1);
-        return oneLineAddAddress;
-
+        return addAddressButtonSpan.getText();
 
     }
 }

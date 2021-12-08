@@ -46,17 +46,17 @@ public class UserDataSteps {
         Assert.assertEquals("Address successfully added!", result.getAlertSuccess());
         // sprawdza czy dana wyświetlone zgadzaja sie z tym z parametrów
         Assert.assertEquals(result.getAlias(), alias);
-        assertTrue(result.getAddress().matches("(.*)" + address + "(.*)"));
-        assertTrue(result.getAddress().matches("(.*)" + code + "(.*)"));
-        assertTrue(result.getAddress().matches("(.*)" + city + "(.*)"));
-        assertTrue(result.getAddress().matches("(.*)" + phone + "(.*)"));
-        assertTrue(result.getAddress().matches("(.*)"+ country +"(.*)"));
+        assertTrue(result.getAddress().contains(address));
+        assertTrue(result.getAddress().contains(city));
+        assertTrue(result.getAddress().contains(code));
+        assertTrue(result.getAddress().contains(phone));
+        assertTrue(result.getAddress().contains(country));
         // sprawdza czy dane sa na odpowiednich miejscach w formularzu
         CheckDate check = new CheckDate(driver);
         check.startCheck();
-        Assert.assertEquals(alias,check.getAlias());
-        Assert.assertEquals(address,check.getAddress());
-        Assert.assertEquals(city,check.getCity());
+        Assert.assertEquals(alias, check.getAlias());
+        Assert.assertEquals(address, check.getAddress());
+        Assert.assertEquals(city, check.getCity());
         Assert.assertEquals(code, check.getPostCode());
         Assert.assertEquals(phone, check.getPhone());
         Assert.assertEquals(country, check.getCountry());
@@ -71,14 +71,13 @@ public class UserDataSteps {
         Assert.assertEquals("Address successfully deleted!", remove.getAlertSuccess());
     }
 
-    @Then("sprawdzenie czy dane zostaly usuniete danych")
-    public void whatKey() {
-        UserDataPages key = new UserDataPages(driver);
+    @Then("sprawdzenie czy dane zostaly usuniete")
+    public void isDelete() {
+        UserDataPages del = new UserDataPages(driver);
 
         driver.get("https://mystore-testlab.coderslab.pl/index.php?controller=my-account");
-      System.out.println(key.getNameBottomAddFirst());
-        assertTrue(key.getNameBottomAddFirst().matches("ADD FIRST ADDRESS"));
-
+        System.out.println(del.getNameBottomAddFirst());
+        assertTrue(del.getNameBottomAddFirst().contains("ADD FIRST ADDRESS"));
     }
 
 }
