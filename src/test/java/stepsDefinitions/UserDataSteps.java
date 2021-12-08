@@ -7,6 +7,7 @@ import io.cucumber.java.en.When;
 import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import check.CheckDate;
 import pages.LoginPage;
 import pages.UserDataPages;
 
@@ -33,23 +34,33 @@ public class UserDataSteps {
     }
 
     @Then("^przejscie do zakładki Address i wypisanie danych (.*) \"(.*)\" (.*) (.*) (.*) \"(.*)\"$")
-    public void addressData(String alias, String address, String code, String city, String phone, String country) {
+    public void addressData(String alias, String address, String city, String code, String phone, String country) {
         UserDataPages dataAddress = new UserDataPages(driver);
-        dataAddress.address(alias, address, code, city, phone, country);
-
+        dataAddress.address(alias, address, city, code, phone, country);
 
     }
 
     @And("^wyświetlenie i potwierdzenie zapisania danych (.*) \"(.*)\" (.*) (.*) (.*) \"(.*)\"$")
-    public void resultsCheck(String alias, String address, String code, String city, String phone, String country) {
+    public void resultsCheck(String alias, String address, String city, String code, String phone, String country) {
         UserDataPages result = new UserDataPages(driver);
         Assert.assertEquals("Address successfully added!", result.getAlertSuccess());
+        // sprawdza czy dana wyświetlone zgadzaja sie z tym z parametrów
         Assert.assertEquals(result.getAlias(), alias);
         assertTrue(result.getAddress().matches("(.*)" + address + "(.*)"));
         assertTrue(result.getAddress().matches("(.*)" + code + "(.*)"));
         assertTrue(result.getAddress().matches("(.*)" + city + "(.*)"));
         assertTrue(result.getAddress().matches("(.*)" + phone + "(.*)"));
         assertTrue(result.getAddress().matches("(.*)"+ country +"(.*)"));
+        // sprawdza czy dane sa na odpowiednich miejscach w formularzu
+        CheckDate check = new CheckDate(driver);
+        check.startCheck();
+        Assert.assertEquals(alias,check.getAlias());
+        Assert.assertEquals(address,check.getAddress());
+        Assert.assertEquals(city,check.getCity());
+        Assert.assertEquals(code, check.getPostCode());
+        Assert.assertEquals(phone, check.getPhone());
+        Assert.assertEquals(country, check.getCountry());
+        check.endCheck();
 
     }
 

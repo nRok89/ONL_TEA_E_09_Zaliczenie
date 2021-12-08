@@ -8,6 +8,6 @@ Feature: Set User Data
     When usuniecie danych z konta uzytkownika
     Then sprawdzenie czy dane zostaly usuniete danych
     Examples:
-      | email                  | password   | alias | address    | code    | city   | phone        | country        |
-      | wodowanie.jan123@wp.pl | Haslo1234* | Pike  | Portobello 13 | W11-2ED | London | 442079089696 | United Kingdom |
+      | email                  | password   | alias | address       | city     | code    | phone        | country        |
+      | wodowanie.jan123@wp.pl | Haslo1234* | Pike  | Portobello 13 | London   | W11-2ED | 442079089696 | United Kingdom |
 

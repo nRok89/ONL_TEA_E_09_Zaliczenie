@@ -7,7 +7,7 @@ import org.openqa.selenium.support.PageFactory;
 
 
 public class UserDataPages {
-    private static WebDriver driver;
+    protected static WebDriver driver;
 
 
     public UserDataPages(WebDriver driver) {
@@ -17,21 +17,21 @@ public class UserDataPages {
 
 
     @FindBy(id = "address-link")
-    private WebElement addressButton;
+    public WebElement addressButton;
     @FindBy(name = "alias")
-    private WebElement aliasInput;
+    public WebElement aliasInput;
     @FindBy(name = "address1")
-    private WebElement address1Input;
+    public WebElement address1Input;
     @FindBy(name = "postcode")
-    private WebElement postcodeInput;
+    public WebElement postcodeInput;
     @FindBy(name = "city")
-    private WebElement cityInput;
+    public WebElement cityInput;
     @FindBy(name = "phone")
-    private WebElement phoneInput;
+    public WebElement phoneInput;
     @FindBy(name = "id_country")
     private WebElement countrySelect;
     @FindBy(xpath = "//*[@name='id_country']/option[2]")
-    private WebElement countryChoose;
+    public WebElement countryChoose;
 
     @FindBy(css = "button.btn")
     private WebElement saveButton;
@@ -51,7 +51,7 @@ public class UserDataPages {
     private WebElement addAddressButtonSpan;
 
 
-    public void address(String alias, String address, String code, String city, String phone, String country) {
+    public void address(String alias, String address, String city, String code, String phone, String country) {
         addressButton.click();
         aliasInput.click();
         aliasInput.clear();
@@ -97,6 +97,6 @@ public class UserDataPages {
         String oneLineAddAddress = tempOneLineAddAddress.substring(1);
         return oneLineAddAddress;
 
-    }
 
+    }
 }
