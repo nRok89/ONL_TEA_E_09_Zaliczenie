@@ -1,4 +1,4 @@
-package stepsDefinitions;
+package stepDefinitions;
 
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
@@ -21,6 +21,7 @@ public class UserDataSteps {
     public void openCodersLab() {
         System.setProperty("webdriver.gecko.driver", "src/main/resources/drivers/geckodriver.exe");
         driver = new FirefoxDriver();
+        driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
         driver.get("https://mystore-testlab.coderslab.pl");
     }
@@ -31,7 +32,7 @@ public class UserDataSteps {
         logIn.myStoreLogin(email, password);
     }
 
-    @Then("^przejscie do zakładki Address i wypisanie danych (.*) (.*) (.*) (.*) (.*) \"(.*)\"$")
+    @Then("^przejscie do zakładki Address i wypisanie danych (.*) \"(.*)\" (.*) (.*) (.*) \"(.*)\"$")
     public void addressData(String alias, String address, String code, String city, String phone, String country) {
         UserDataPages dataAddress = new UserDataPages(driver);
         dataAddress.address(alias, address, code, city, phone, country);
@@ -39,7 +40,7 @@ public class UserDataSteps {
 
     }
 
-    @And("^wyświetlenie i potwierdzenie zapisania danych (.*) (.*) (.*) (.*) (.*) \"(.*)\"$")
+    @And("^wyświetlenie i potwierdzenie zapisania danych (.*) \"(.*)\" (.*) (.*) (.*) \"(.*)\"$")
     public void resultsCheck(String alias, String address, String code, String city, String phone, String country) {
         UserDataPages result = new UserDataPages(driver);
         Assert.assertEquals("Address successfully added!", result.getAlertSuccess());
@@ -59,7 +60,7 @@ public class UserDataSteps {
         Assert.assertEquals("Address successfully deleted!", remove.getAlertSuccess());
     }
 
-    @Then("sprawdzenie usunięcia danych")
+    @Then("sprawdzenie czy dane zostaly usuniete danych")
     public void whatKey() {
         UserDataPages key = new UserDataPages(driver);
 
