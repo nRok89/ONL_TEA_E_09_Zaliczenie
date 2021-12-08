@@ -1,7 +1,7 @@
-package pages;
+package check;
 
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.support.PageFactory;
+import pages.SweaterPage;
 
 public class CheckPrice extends SweaterPage {
     protected static WebDriver driver;
@@ -26,21 +26,20 @@ public class CheckPrice extends SweaterPage {
         double price = Double.valueOf(string);
         return price;
     }
-    public double percent20(){
+
+    public double percent20() {
         double percent = 0.2 * stringToDouble(fullPrice());
         return percent;
     }
 
-    public double priceDiffrence(){
+    public double priceDiffrence() {
         double difference = stringToDouble(fullPrice()) - stringToDouble(discountPrice());
         return difference;
     }
 
 
     public String calculatedPrice() {
-        String tempPrice = fullPrice();
-        double price = Double.valueOf(tempPrice);
-        double discount = price * 0.8;
+        double discount = stringToDouble(fullPrice()) * 0.8;
         String calculated = String.valueOf(discount);
         return calculated;
     }

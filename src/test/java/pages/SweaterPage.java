@@ -54,6 +54,16 @@ public class SweaterPage {
         }
     }
 
+    public boolean numberCorrect(int numbers) {
+
+        if (numbers > 0) {
+            return true;
+        } else {
+            System.out.println("niepoprawna liczba");
+            return false;
+        }
+    }
+
 
     public void order(String size, int quantity) {
         sizeButton.click();

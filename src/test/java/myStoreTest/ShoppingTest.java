@@ -1,5 +1,6 @@
 package myStoreTest;
 
+import check.CheckPrice;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
@@ -13,10 +14,13 @@ import java.util.concurrent.TimeUnit;
 
 public class ShoppingTest {
     private static WebDriver driver;
+    String email = "wodowanie.jan123@wp.pl" ;
+    String password = "Haslo1234*" ;
     // dostępne rozmiary S, M, L, XL.
     String sweaterSize = "M";
     int numbersOfsweaters = 5;
-    String screenAddress = "target/screenshots\\";
+    //domyslenie folder ""target"
+    String screenAddress = "";
 
 
     @Before
@@ -33,7 +37,7 @@ public class ShoppingTest {
     @Test
     public void sweaterBuy() throws IOException {
         LoginPage logIn = new LoginPage(driver);
-        logIn.myStoreLogin("wodowanie.jan123@wp.pl", "Haslo1234*");
+        logIn.myStoreLogin(email, password);
 
         ClothesPage clothes = new ClothesPage(driver);
         clothes.clothesSelection();
@@ -44,6 +48,7 @@ public class ShoppingTest {
 
         SweaterPage sweater = new SweaterPage(driver);
         Assert.assertTrue(sweater.sizeCorrect(sweaterSize));
+        Assert.assertTrue(sweater.numberCorrect(numbersOfsweaters));
         sweater.order(sweaterSize, numbersOfsweaters);
 
         CheckOrderPage order = new CheckOrderPage(driver);
@@ -63,7 +68,7 @@ public class ShoppingTest {
 
     @After
     public void tearDown() {
-        driver.quit();
+         driver.quit();
     }
 
 
